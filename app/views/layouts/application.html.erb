@@ -24,7 +24,7 @@
                     <a class="nav-link" href="#"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Books</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Logout</a>
+                    <%= link_to "Logout",destroy_user_session_path ,method: :delete, class:"glyphicon glyphicon-log-out" %>
                 </li>
             </ul>
         </div>

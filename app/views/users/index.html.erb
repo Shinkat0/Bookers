@@ -1,4 +1,6 @@
-
+<% if flash[:notice] %>
+<p><%= flash[:notice] %></p>
+<% end %>
 
 <div class="container">
     <div class="row">
@@ -6,15 +8,19 @@
         	<h2>User info</h2>
 			<br>
 			<table class="table">
+
 				<tr>
 					<th>name</th>
-					<th>a</th>
+					<th><%= @user.name %></th>
 				</tr>
 				<tr>
 					<th>introdution</th>
-					<th>a</th>
+					<th><%= @user.Introduction %></th>
 				</tr>
+
+
 			</table>
+
 
 			<br>
 			<br>
@@ -22,6 +28,16 @@
 			<h2>New book</h2>
 
 			<%= form_for(@book) do |f| %>
+
+			<% if @book.errors.any? %>
+			  <div class="alert alert-warning">
+			    <ul>
+			      <% @book.errors.full_messages.each do |message| %>
+			        <li><%= message %></li>
+			      <% end %>
+			    </ul>
+			  </div>
+			<% end %>
 			<h4>Titile</h4>
 			<%= f.text_field :title %>
 
