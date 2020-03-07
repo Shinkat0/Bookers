@@ -14,8 +14,9 @@
         <a class="navbar-brand" href="#">Bookers</a>
         <div class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav navbar-right">
+                <% if user_signed_in? %>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a>
+                    <%= link_to "Home", users_path, class:"glyphicon glyphicon-home" %>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users</a>
@@ -26,6 +27,20 @@
                 <li class="nav-item">
                     <%= link_to "Logout",destroy_user_session_path ,method: :delete, class:"glyphicon glyphicon-log-out" %>
                 </li>
+                 <% else %>
+                 <li class="nav-item">
+                    <%= link_to "Home", root_path, class:"glyphicon glyphicon-home" %>
+                </li>
+                <li class="nav-item">
+                    <%= link_to "About", new_user_registration_path, class:"glyphicon glyphicon-book" %>
+                </li>
+                <li class="nav-item">
+                    <%= link_to "signup", new_user_registration_path, class:"glyphicon glyphicon-sign-up" %>
+                </li>
+                <li class="nav-item">
+                    <%= link_to "login", new_user_session_path, class:"glyphicon glyphicon-sign-in" %>
+                </li>
+                 <% end %>
             </ul>
         </div>
     </nav>
