@@ -4,23 +4,25 @@
 
 <div class="container">
 	<div class="row">
-		<%= render 'users/list', book: @book ,user: @user %>
+		<%= render 'users/list', book: @book_new ,user: @user %>
 	<div class="col-xs-9">
 		<h2>Book detail</h2>
 		<br>
 		<table class="table">
 			<tr>
-				<th></th>
-				<th></th>
-				<th></th>
-			</tr>
-			<tr>
-				<td><%= attachment_image_tag user, :profile_image,:fill, 320, 320, fallback: 'Noimage.png', size:'50x50' %></td>
-				<td>タイトル</td>
-				<td>内容</td>
+				<td><%= attachment_image_tag @book.user, :profile_image,:fill, 320, 320, fallback: 'Noimage.png', size:'50x50' %></td>
+				<td><%= @book.title %></td>
+				<td><%= @book.body %></td>
+				<% if current_user == @book.user %>
+				<td><%= link_to 'Edit', edit_book_path, class: "btn  btn-success w-50px"%></td>
+				<td><%= link_to 'Destroy', book_path(@book), method: :delete, data: {confirm: "本当に消しますか？"}, class: "btn  btn-danger w-50px"%></td>
+				<% end %>
 			</tr>
 		</table>
-	</div>
+		<%= link_to @book.user.name, user_path(@book.user.id) %>
+
+
+		</div>
 	</div>
 </div>
 
