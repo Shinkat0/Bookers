@@ -2,5 +2,25 @@
 <p><%= flash[:notice] %></p>
 <% end %>
 
-<h1>Book detail</h1>
+<div class="container">
+	<div class="row">
+		<%= render 'users/list', book: @book ,user: @user %>
+	<div class="col-xs-9">
+		<h2>Book detail</h2>
+		<br>
+		<table class="table">
+			<tr>
+				<th></th>
+				<th></th>
+				<th></th>
+			</tr>
+			<tr>
+				<td><%= attachment_image_tag user, :profile_image,:fill, 320, 320, fallback: 'Noimage.png', size:'50x50' %></td>
+				<td>タイトル</td>
+				<td>内容</td>
+			</tr>
+		</table>
+	</div>
+	</div>
+</div>
 
