@@ -1,4 +1,6 @@
 class BooksController < ApplicationController
+  before_action :authenticate_user! , except: [:top]
+
   def top
 
   end
@@ -15,8 +17,6 @@ class BooksController < ApplicationController
     @user = current_user
   end
 
-  def new
-  end
 
   def update
     @book = Book.find(params[:id])
@@ -44,6 +44,9 @@ class BooksController < ApplicationController
 
   def edit
     @book = Book.find(params[:id])
+    if current_user != @book.user
+      redirect_to books_path
+    end
   end
 
   def destroy

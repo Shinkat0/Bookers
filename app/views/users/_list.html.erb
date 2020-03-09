@@ -10,12 +10,11 @@
 				</tr>
 				<tr>
 					<th>introdution</th>
-					<th><%= user.Introduction %></th>
+					<th><%= user.introduction %></th>
 				</tr>
 
 			</table>
-
-			<a href="/users/:id/edit" class="btn btn-primary btn-block btn-" role="button"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
+			<%= link_to "", edit_user_path(user), class: "btn btn-primary btn-block glyphicon glyphicon-wrench" %>
 
 			<br>
 			<br>

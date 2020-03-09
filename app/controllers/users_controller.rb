@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user! , except: [:about]
 
   def index
   	@book = Book.new
@@ -10,7 +11,10 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = current_user
+    @user = User.find(params[:id])
+    if current_user != @user
+      redirect_to user_path(current_user)
+    end
   end
 
   def show
@@ -23,7 +27,7 @@ class UsersController < ApplicationController
     user = current_user
     if user.update(user_params)
       flash[:notice]='You have updated user successfully.'
-      redirect_to users_path(current_user)
+      redirect_to user_path(current_user)
     else
       @user = user
       render :edit
@@ -37,7 +41,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-        params.require(:user).permit(:name, :Introduction, :profile_image)
+        params.require(:user).permit(:name, :introduction, :profile_image)
   end
 end
 
